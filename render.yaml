@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: proxy-navigateur-leger
+    env: python
+    region: frankfurt          # choisir le plus proche de vous
+    plan: starter              # plan gratuit suffisant pour tester
+    buildCommand: |
+      pip install -r requirements.txt &&
+      playwright install chromium --with-deps
+    startCommand: python app.py
+    envVars:
+      - key: PLAYWRIGHT_BROWSERS_PATH
+        value: /opt/render/project/playwright
+      - key: PYTHON_VERSION
+        value: "3.11"
